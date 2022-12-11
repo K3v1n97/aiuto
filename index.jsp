@@ -1,26 +1,28 @@
+<%@page import="it.cefi.models.Collection"%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Isogramma</title>
+		<title>BinarySearch</title>
 	</head>
 	<body>
-		<form action="isogramServlet" method="post">
-			<div>
-				<h1>Is Isogram Program</1>
-			</div>
-			<div>
-				<label>Inserisci una frase</label>
-			</div>
-			<div>
-				<textarea rows="1" cols="50" name="isogramText"></textarea>
-				<button type="submit">Calcola</button>
-			</div>
-			<% if(request.getAttribute("isIsogram") != null) { %>
-			<div>
-				<h3><%= request.getAttribute("isIsogram") %></h3>
-			</div>
+	<form action="servletConnector" method="post">
+		<% Collection collection = new Collection(); %>
+		<div>
+			<label>Random Numbers: </label>
+			<% for(int number : collection.getRandomNumbers()) { %>
+				<label><%= number %></label>
 			<% } %>
-		</form>
+		</div>
+		<div>
+			<input type="text" name="index"/>
+			<button type="submit">Cerca</button>
+		</div>
+		<% if (request.getAttribute("result") != null) { %>
+		<div>
+			<h3><%= request.getAttribute("result") %></h3>
+		</div>
+		<% } %>
+	</form>
 	</body>
 </html>
