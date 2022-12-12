@@ -1,0 +1,38 @@
+package it.cefi.controller;
+
+import java.io.IOException;
+
+import it.cefi.models.Isogram;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/isogramServlet")
+public class IsogramServlet  extends HttpServlet{
+
+	private static final long serialVersionUID = 1L;
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		Isogram fraseIsogram = new Isogram();
+		if(fraseIsogram.isIsogram(request.getParameter("isogramText"))) {
+			String isIsogram = "La frase è un isogramma";
+			request.setAttribute("isIsogram", isIsogram);
+		} else {
+			String isNotIsogram = "La frase non è un isogramma";
+			request.setAttribute("isIsogram", isNotIsogram);
+		}
+		
+		response.setContentType("text/html");
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
+		
+	}
+
+}

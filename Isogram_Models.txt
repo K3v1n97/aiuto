@@ -1,0 +1,39 @@
+package it.cefi.models;
+
+public class Isogram {
+	
+	int[] alfabeto = new int[26];
+	
+	private String frase;
+	
+	public Isogram() {
+		
+	}
+
+	public String getFrase() {
+		return frase;
+	}
+
+	public void setFrase(String frase) {
+		this.frase = frase;
+	}
+	
+	public boolean isIsogram(String frase) {
+		
+		frase.toLowerCase();
+		
+		for(int i = 0; i < frase.length(); i++) {
+			if(frase.charAt(i) >= 97 && frase.charAt(i) <= 122) {
+				alfabeto[frase.charAt(i) - 97] += 1;
+			}
+		}
+		
+		for(int numero : alfabeto) {
+			if(numero != 1 && numero != 0) {
+				return false;
+			}
+		}
+ 		return true;
+	}
+
+}
